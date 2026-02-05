@@ -1,4 +1,4 @@
-package com.arturk.model.dto.response;
+package com.arturk.model.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,15 +11,13 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Builder
 @Data
-public class ProductResponse {
+public class OrderRequest {
 
-    private String id;
-
-    private String name;
+    private String orderNumber;
 
     private String skuCode;
 
-    private String description;
-
     private BigDecimal price;
+
+    private Integer quantity;
 }

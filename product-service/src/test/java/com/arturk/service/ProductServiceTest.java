@@ -40,6 +40,7 @@ public class ProductServiceTest {
         // given
         ProductRequest request = ProductRequest.builder()
                 .name("Iphone 17 Pro")
+                .skuCode("APL-IP17PRO-512GB-BLACK")
                 .description("Apple smartphone")
                 .price(new BigDecimal("730.99"))
                 .build();
@@ -57,6 +58,7 @@ public class ProductServiceTest {
         //give
         ProductEntity productEntity = ProductEntity.builder()
                 .name("Iphone 17 Pro Max")
+                .skuCode("APL-IP17PRO-MAX-512GB-BLACK")
                 .description("Apple smartphone")
                 .price(new BigDecimal("860.99"))
                 .build();

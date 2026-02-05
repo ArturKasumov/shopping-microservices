@@ -21,6 +21,8 @@ public class ProductEntity {
 
     private String name;
 
+    private String skuCode;
+
     private String description;
 
     private BigDecimal price;

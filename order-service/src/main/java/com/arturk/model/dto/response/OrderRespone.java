@@ -11,15 +11,15 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Builder
 @Data
-public class ProductResponse {
+public class OrderRespone {
 
-    private String id;
+    private Long id;
 
-    private String name;
+    private String orderNumber;
 
     private String skuCode;
 
-    private String description;
-
     private BigDecimal price;
+
+    private Integer quantity;
 }

@@ -5,6 +5,10 @@ spring:
   application:
     name: product-service
 
+  output:
+    ansi:
+      enabled: ALWAYS
+
   data:
     mongodb:
       uri: mongodb://admin:pwd@localhost:27017/products?authSource=admin

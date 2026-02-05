@@ -1,7 +1,7 @@
 services:
   mongo:
     image: mongo:8
-    container_name: mongo
+    container_name: mongo_product_service
     restart: unless-stopped
     ports:
       - "27017:27017"
@@ -10,7 +10,13 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: pwd
       MONGO_INITDB_DATABASE: products
     volumes:
-      - mongo_data:/data/db
+      - mongo_data_product_service:/data/db
+    networks:
+      - shopping-microservices-network
 
 volumes:
-  mongo_data:
+  mongo_data_product_service:
+
+networks:
+  shopping-microservices-network:
+    external: true

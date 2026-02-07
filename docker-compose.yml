@@ -1,0 +1,39 @@
+services:
+  mongo:
+    image: mongo:8
+    container_name: mongo_product_service
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: pwd
+      MONGO_INITDB_DATABASE: products
+    volumes:
+      - mongo_data_shopping_ms:/data/db
+    networks:
+      - shopping-microservices-network
+
+  postgres:
+    image: postgres:18
+    container_name: postgres_shopping_ms
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: pwd
+      POSTGRES_MULTIPLE_DATABASES: orders,inventory
+    volumes:
+      - ./docker-init/db-init.sh:/docker-entrypoint-initdb.d/db-init.sh
+      - postgres_data_shopping_ms:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+    networks:
+      - shopping-microservices-network
+
+volumes:
+  mongo_data_shopping_ms:
+  postgres_data_shopping_ms:
+
+networks:
+  shopping-microservices-network:
+    driver: bridge

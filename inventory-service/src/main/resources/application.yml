@@ -1,0 +1,25 @@
+server:
+  port: 4030
+
+spring:
+  application:
+    name: inventory-service
+
+  output:
+    ansi:
+      enabled: ALWAYS
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/inventory
+    username: admin
+    password: pwd
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+

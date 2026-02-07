@@ -7,6 +7,7 @@ import com.arturk.repository.ProductRepository;
 import com.arturk.service.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +27,8 @@ public class ProductService {
         return productMapper.toProductResponse(productEntity);
     }
 
-    public List<ProductResponse> getProducts() {
-        return productRepository.findAll()
+    public List<ProductResponse> getProducts(Pageable pageable) {
+        return productRepository.findAll(pageable)
                 .stream()
                 .map(productMapper::toProductResponse)
                 .toList();

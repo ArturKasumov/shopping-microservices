@@ -4,6 +4,7 @@ import com.arturk.model.dto.request.ProductRequest;
 import com.arturk.model.dto.response.ProductResponse;
 import com.arturk.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class ProductController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductResponse> getProducts() {
-        return productService.getProducts();
+    public List<ProductResponse> getProducts(Pageable pageable) {
+        return productService.getProducts(pageable);
     }
 }

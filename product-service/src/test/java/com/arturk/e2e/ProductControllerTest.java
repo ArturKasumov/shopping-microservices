@@ -32,7 +32,7 @@ public class ProductControllerTest {
     private int serverPort;
 
     @BeforeEach
-    void cleanDatabase() {
+    public void cleanDatabase() {
         productRepository.deleteAll();
     }
 
@@ -49,7 +49,7 @@ public class ProductControllerTest {
                 """;
 
         given()
-                .baseUri("http://127.0.0.1")
+                .baseUri("http://127.0.0.1/api")
                 .port(serverPort)
                 .contentType(ContentType.JSON)
                 .body(json)
@@ -74,7 +74,7 @@ public class ProductControllerTest {
 
         //when
         given()
-                .baseUri("http://127.0.0.1")
+                .baseUri("http://127.0.0.1/api")
                 .port(serverPort)
         .when()
                 .get("/product")

@@ -40,6 +40,15 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+        <!-- SPRING CLOUD -->
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <!-- DATABASE -->
+
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -51,6 +60,8 @@
             <artifactId>liquibase-core</artifactId>
             <scope>compile</scope>
         </dependency>
+
+        <!-- COMMON -->
 
         <dependency>
             <groupId>org.projectlombok</groupId>

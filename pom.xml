@@ -29,10 +29,13 @@
         <maven.compiler.target>23</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>3.5.10</spring-boot.version>
+        <spring-cloud.version>2025.0.1</spring-cloud.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+
+            <!-- SPRING STARTERS -->
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -47,9 +50,11 @@
             </dependency>
 
             <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.18.42</version>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!-- DATABASE -->
@@ -66,6 +71,14 @@
                 <artifactId>liquibase-core</artifactId>
                 <version>5.0.1</version>
                 <scope>compile</scope>
+            </dependency>
+
+            <!-- COMMON -->
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.42</version>
             </dependency>
 
             <!-- TEST -->

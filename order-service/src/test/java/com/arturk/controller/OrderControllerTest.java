@@ -1,6 +1,7 @@
 package com.arturk.controller;
 
-import com.arturk.model.dto.request.OrderRequest;
+import com.arturk.AbstractIntegrationTest;
+import com.arturk.client.InventoryClient;
 import com.arturk.model.entity.OrderEntity;
 import com.arturk.repository.OrderRepository;
 import lombok.SneakyThrows;
@@ -8,37 +9,26 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.math.BigDecimal;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Testcontainers
 @AutoConfigureMockMvc
-public class OrderControllerTest {
+public class OrderControllerTest extends AbstractIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private OrderRepository orderRepository;
-
-    @Container
-    private static final PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:18");
-
-    @BeforeEach
-    public void cleanDatabase() {
-        orderRepository.deleteAll();
-    }
+    @MockitoBean
+    private InventoryClient inventoryClient;
 
     @Test
     @SneakyThrows
@@ -54,7 +44,11 @@ public class OrderControllerTest {
                }
                """;
 
-        mockMvc.perform(post("/api/order")
+       when(inventoryClient.getProductAvailability("APL-IP17PRO-MAX-512GB-BLACK", 1))
+               .thenReturn(true);
+
+       //when
+       mockMvc.perform(post("/api/order")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().is(201))
@@ -73,8 +67,10 @@ public class OrderControllerTest {
                 .price(new BigDecimal("860.99"))
                 .quantity(1)
                 .build();
-        orderRepository.save(order);
 
+        getOrderRepository().save(order);
+
+        //when
         mockMvc.perform(get("/api/order")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))

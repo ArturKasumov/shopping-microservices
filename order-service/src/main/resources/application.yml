@@ -23,3 +23,6 @@ spring:
       hibernate:
         format_sql: true
 
+clients:
+  inventory:
+    base-url: http://127.0.0.1:4030/api/inventory

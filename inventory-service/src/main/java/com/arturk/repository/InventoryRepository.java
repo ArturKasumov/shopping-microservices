@@ -9,4 +9,6 @@ public interface InventoryRepository extends JpaRepository<InventoryEntity, Long
 
     boolean existsBySkuCodeAndQuantityIsGreaterThanEqual(String skuCode, int quantity);
 
+    InventoryEntity findBySkuCode(String skuCode);
+
 }

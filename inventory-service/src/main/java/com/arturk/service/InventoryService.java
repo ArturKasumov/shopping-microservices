@@ -39,6 +39,9 @@ public class InventoryService {
 
     public InventoryResponse createInventory(InventoryRequest inventoryRequest) {
         InventoryEntity inventory = inventoryMapper.fromInventoryRequest(inventoryRequest);
+        if (inventory == null) {
+            throw new EntityNotFoundException("Inventory already exists for skuCode: " + inventoryRequest.getSkuCode());
+        }
         inventoryRepository.save(inventory);
         return inventoryMapper.toInventoryResponse(inventory);
     }

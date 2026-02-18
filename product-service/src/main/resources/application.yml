@@ -13,3 +13,14 @@ spring:
     mongodb:
       uri: mongodb://admin:pwd@localhost:27017/products?authSource=admin
       database: products
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger/swagger-ui.html
+    try-it-out-enabled: false
+    supportedSubmitMethods:
+    enabled: true
+  api-docs:
+    path: /swagger/api-docs
+    enabled: true

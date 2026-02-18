@@ -26,3 +26,14 @@ spring:
 clients:
   inventory:
     base-url: http://127.0.0.1:4030/api/inventory
+
+springdoc:
+  swagger-ui:
+    path: /swagger/swagger-ui.html
+    try-it-out-enabled: false
+    supportedSubmitMethods:
+    enabled: true
+  api-docs:
+    path: /swagger/api-docs
+    enabled: true
+

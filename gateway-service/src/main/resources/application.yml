@@ -14,3 +14,20 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8181/realms/shopping-ms
+
+springdoc:
+  swagger-ui:
+    path: /swagger/swagger-ui.html
+    try-it-out-enabled: false
+    supportedSubmitMethods:
+    enabled: true
+    urls:
+      - name: Product Service
+        url: /swagger/product-service/api-docs
+      - name: Order Service
+        url: /swagger/order-service/api-docs
+      - name: Inventory Service
+        url: /swagger/inventory-service/api-docs
+  api-docs:
+    path: /swagger/api-docs
+    enabled: true
